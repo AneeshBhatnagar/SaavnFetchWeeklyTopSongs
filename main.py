@@ -6,6 +6,7 @@
 import urllib
 from lxml import html
 import os.path
+from tabulate import tabulate
 
 def fetchDataFromWeb(url):
 	return urllib.urlopen(url).read()	
@@ -66,6 +67,11 @@ def findDifferenceInData(old,new):
 			removedTracks.append([temp[0],temp[1]])
 	return addedTracks, removedTracks, movedTracks
 
+def displayLatestList(data):
+	for i in xrange(len(data)):
+		data[i].insert(0,i+1)
+	print tabulate(data, headers = ['Position','Title','Album'])
+
 
 if __name__ == '__main__':
 	oldData = []
@@ -78,5 +84,6 @@ if __name__ == '__main__':
 	oldDataFlag = True
 	url = "https://www.saavn.com/s/featured/hindi/Weekly+Top+Songs"
 	newData = findDetailsInHTML(readHTMLFromFile('test.txt'))
-	if oldDataFlag:
-		print findDifferenceInData(oldData, newData)
+	displayLatestList(newData)
+	#if oldDataFlag:
+		#print findDifferenceInData(oldData, newData)
