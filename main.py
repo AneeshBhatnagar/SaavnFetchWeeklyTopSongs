@@ -99,7 +99,7 @@ def displayList(data, removedData = None):
 if __name__ == '__main__':
 	oldData = []
 	oldDataFlag = False
-	date = dt.datetime.today().strftime("%m/%d/%Y")
+	date = dt.datetime.today().strftime("%m-%d-%Y")
 	if os.path.isfile('newData.txt'):
 	 	oldData = readListFromFile('newData.txt')
 	 	oldDataFlag = True
